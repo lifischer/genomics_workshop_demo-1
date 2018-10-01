@@ -11,6 +11,7 @@ def test_complimentary_sequence_works():
 
 
 
+
 #def test_gc_content_sequence_works():
  #   assert DNA('GC').gc_content > 0.5
 def test_is_gc_rich():
@@ -18,3 +19,15 @@ def test_is_gc_rich():
  #   length = len(sequence)
   #  c_count = sequence.upper().count('C')
    # g_count = sequence.upp
+
+def test_triplets():
+    assert DNA('AAA').split_DNA_triplets == ['AAA']
+    assert DNA('AAATTTGGG').split_DNA_triplets == ['AAA','TTT','GGG']
+    assert DNA('AAAT').split_DNA_triplets == ['AAA','T']
+
+def test_find_start():
+    assert DNA('ATGGG').find_first_start_site == 0
+    assert DNA('CCCCATG').find_first_start_site == 4
+    with pytest.raises(TypeError):
+        DNA('GGG').find_first_start_site
+
